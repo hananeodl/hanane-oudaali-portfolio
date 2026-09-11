@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio QR — Hanane Oudaali</title>
+<style>
+body{font-family:Inter,Arial,sans-serif;background:#f4f5f2;color:#11161b;display:grid;place-items:center;min-height:100vh;margin:0}
+.card{background:#fff;border:1px solid #d9ded9;padding:35px;width:min(520px,calc(100% - 30px));text-align:center}
+h1{font-size:32px;letter-spacing:-1.5px}p{color:#667079;font-size:14px}
+input{width:100%;padding:14px;border:1px solid #cfd6d0;box-sizing:border-box;margin:15px 0;font-size:14px}
+button{background:#11161b;color:white;border:0;padding:13px 18px;cursor:pointer;font-weight:600}
+#qr{margin:25px auto 0;min-height:30px;display:grid;place-items:center}
+small{display:block;color:#89928d;margin-top:18px}
+</style>
+</head>
+<body><div class="card">
+<h1>Portfolio QR Generator</h1>
+<p>Paste the final deployed portfolio URL. The QR code will point directly to it.</p>
+<input id="url" placeholder="https://your-portfolio-url.com">
+<button id="go">Generate QR</button>
+<div id="qr"></div><small>Tip: print the QR at a comfortable size and test it with two phones before adding it to your CV.</small>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+document.getElementById('go').onclick=()=>{
+ const url=document.getElementById('url').value.trim();
+ if(!url){alert('Please enter your portfolio URL.');return;}
+ const box=document.getElementById('qr'); box.innerHTML='';
+ new QRCode(box,{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.H});
+};
+</script></body></html>
